@@ -42,7 +42,7 @@ function ResultsContent() {
   }, [scheduleId]);
 
   if (loading) {
-    return <div className="p-4 text-center text-gray-500">読み込み中...</div>;
+    return <div className="p-4 text-center text-muted-foreground">読み込み中...</div>;
   }
 
   return (
@@ -50,11 +50,11 @@ function ResultsContent() {
       <h1 className="mb-4 text-xl font-bold">テイスティング結果</h1>
 
       {tastings.length === 0 ? (
-        <p className="text-center text-gray-500">結果がありません</p>
+        <p className="text-center text-muted-foreground">結果がありません</p>
       ) : (
         <div className="space-y-3">
           {tastings.map((t) => (
-            <div key={t.id} className="rounded-lg border border-gray-200 p-3">
+            <div key={t.id} className="rounded-lg border border-border p-3">
               <div className="mb-2 flex items-center justify-between">
                 <div>
                   <p className="font-medium">
@@ -63,16 +63,16 @@ function ResultsContent() {
                       ? ` / ${t.filling_schedules.filling_products.name}`
                       : ""}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     {t.profiles?.display_name} /{" "}
                     {new Date(t.created_at).toLocaleDateString("ja-JP")}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-blue-600">
+                  <p className="text-2xl font-bold text-primary">
                     {t.overall ?? "-"}
                   </p>
-                  <p className="text-xs text-gray-400">Overall</p>
+                  <p className="text-xs text-muted-foreground">Overall</p>
                 </div>
               </div>
 
@@ -90,12 +90,12 @@ function ResultsContent() {
               {(t.off_flavor?.length > 0 || t.technical_defects?.length > 0) && (
                 <div className="mt-2 flex flex-wrap gap-1">
                   {t.off_flavor?.map((f) => (
-                    <span key={f} className="rounded bg-red-50 px-1.5 py-0.5 text-xs text-red-700">
+                    <span key={f} className="rounded bg-destructive/10 px-1.5 py-0.5 text-xs text-destructive">
                       {f}
                     </span>
                   ))}
                   {t.technical_defects?.map((d) => (
-                    <span key={d} className="rounded bg-orange-50 px-1.5 py-0.5 text-xs text-orange-700">
+                    <span key={d} className="rounded bg-[oklch(0.72_0.12_85/0.15)] px-1.5 py-0.5 text-xs text-[oklch(0.55_0.12_85)]">
                       {d}
                     </span>
                   ))}
@@ -103,7 +103,7 @@ function ResultsContent() {
               )}
 
               {t.overall_comments && (
-                <p className="mt-2 text-xs text-gray-600">{t.overall_comments}</p>
+                <p className="mt-2 text-xs text-muted-foreground">{t.overall_comments}</p>
               )}
             </div>
           ))}
@@ -115,8 +115,8 @@ function ResultsContent() {
 
 function ScoreCell({ label, value }: { label: string; value: number | null }) {
   return (
-    <div className="rounded bg-gray-50 p-1">
-      <p className="text-[10px] text-gray-400">{label}</p>
+    <div className="rounded bg-accent p-1">
+      <p className="text-[10px] text-muted-foreground">{label}</p>
       <p className="font-medium">{value ?? "-"}</p>
     </div>
   );
@@ -124,7 +124,7 @@ function ScoreCell({ label, value }: { label: string; value: number | null }) {
 
 export default function ResultsPage() {
   return (
-    <Suspense fallback={<div className="p-4 text-center text-gray-500">読み込み中...</div>}>
+    <Suspense fallback={<div className="p-4 text-center text-muted-foreground">読み込み中...</div>}>
       <ResultsContent />
     </Suspense>
   );

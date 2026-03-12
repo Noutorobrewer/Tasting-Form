@@ -175,10 +175,10 @@ export default function NewTastingPage() {
             onClick={() => setStep(i)}
             className={`flex-1 rounded py-1 text-[10px] transition-colors ${
               i === step
-                ? "bg-blue-600 text-white"
+                ? "bg-primary text-primary-foreground"
                 : i < step
-                  ? "bg-blue-100 text-blue-700"
-                  : "bg-gray-100 text-gray-400"
+                  ? "bg-accent text-primary"
+                  : "bg-secondary text-muted-foreground"
             }`}
           >
             {s}
@@ -193,7 +193,7 @@ export default function NewTastingPage() {
           <select
             value={fillingScheduleId}
             onChange={(e) => setFillingScheduleId(e.target.value)}
-            className="mb-3 w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+            className="mb-3 w-full rounded-md border border-input bg-card px-3 py-2 text-sm"
           >
             <option value="">-- 選択 --</option>
             {schedules.map((s) => (
@@ -242,8 +242,8 @@ export default function NewTastingPage() {
                   onClick={() => setField("beer_color", c)}
                   className={`rounded border px-2 py-1.5 text-xs transition-colors ${
                     form.beer_color === c
-                      ? "border-blue-500 bg-blue-50 text-blue-700"
-                      : "border-gray-200 text-gray-700 hover:bg-gray-50"
+                      ? "border-primary bg-accent text-primary"
+                      : "border-input text-foreground hover:bg-accent"
                   }`}
                 >
                   {c}
@@ -356,10 +356,10 @@ export default function NewTastingPage() {
           <CheckboxGroup label="Off Flavor" options={OFF_FLAVOR_OPTIONS}
             selected={form.off_flavor} onToggle={(v) => toggleArray("off_flavor", v)} />
           <div>
-            <label className="mb-1 block text-xs text-gray-500">Other off flavor</label>
+            <label className="mb-1 block text-xs text-muted-foreground">Other off flavor</label>
             <input value={form.off_flavor_other}
               onChange={(e) => setField("off_flavor_other", e.target.value)}
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+              className="w-full rounded-md border border-input bg-card px-3 py-2 text-sm"
               placeholder="自由入力" />
           </div>
           <CheckboxGroup label="Technical Defects" options={TECHNICAL_DEFECT_OPTIONS}
@@ -378,11 +378,11 @@ export default function NewTastingPage() {
           <TextArea label="Comments" value={form.overall_comments}
             onChange={(v) => setField("overall_comments", v)} />
           <button onClick={handleSubmit} disabled={submitting}
-            className="w-full rounded-md bg-blue-600 py-3 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50">
+            className="w-full rounded-md bg-primary py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
             {submitting ? "送信中..." : "送信"}
           </button>
           <button onClick={() => setStep(step - 1)}
-            className="w-full rounded-md border border-gray-300 py-2 text-sm text-gray-600">
+            className="w-full rounded-md border border-input py-2 text-sm text-muted-foreground">
             戻る
           </button>
         </div>
@@ -395,12 +395,12 @@ export default function NewTastingPage() {
       <div className="flex gap-2 pt-2">
         {step > 0 && (
           <button onClick={() => setStep(step - 1)}
-            className="flex-1 rounded-md border border-gray-300 py-2 text-sm text-gray-600">
+            className="flex-1 rounded-md border border-input py-2 text-sm text-muted-foreground">
             戻る
           </button>
         )}
         <button onClick={() => setStep(step + 1)}
-          className="flex-1 rounded-md bg-blue-600 py-2 text-sm font-medium text-white hover:bg-blue-700">
+          className="flex-1 rounded-md bg-primary py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
           次へ
         </button>
       </div>
@@ -425,15 +425,15 @@ function SliderField({ label, min, max, labels, value, onChange }: {
             <button key={v} type="button" onClick={() => onChange(v)}
               className={`flex-1 rounded border py-2 text-sm transition-colors ${
                 value === v
-                  ? "border-blue-500 bg-blue-600 text-white"
-                  : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-input text-muted-foreground hover:bg-accent"
               }`}>
               {v}
             </button>
           );
         })}
       </div>
-      <div className="mt-0.5 flex justify-between text-[10px] text-gray-400">
+      <div className="mt-0.5 flex justify-between text-[10px] text-muted-foreground">
         <span>{labels[0]}</span>
         <span>{labels[labels.length - 1]}</span>
       </div>
@@ -453,8 +453,8 @@ function CheckboxGroup({ label, options, selected, onToggle }: {
           <button key={opt} type="button" onClick={() => onToggle(opt)}
             className={`rounded border px-2.5 py-1.5 text-xs transition-colors ${
               selected.includes(opt)
-                ? "border-red-400 bg-red-50 text-red-700"
-                : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                ? "border-destructive bg-destructive/10 text-destructive"
+                : "border-input text-muted-foreground hover:bg-accent"
             }`}>
             {opt}
           </button>
@@ -471,7 +471,7 @@ function TextArea({ label, value, onChange }: {
     <div>
       <label className="mb-1 block text-sm font-medium">{label}</label>
       <textarea value={value} onChange={(e) => onChange(e.target.value)}
-        rows={2} className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm" />
+        rows={2} className="w-full rounded-md border border-input bg-card px-3 py-2 text-sm" />
     </div>
   );
 }

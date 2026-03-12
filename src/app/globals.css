@@ -1,19 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --font-sans: var(--font-noto-sans-jp), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.98 0.005 90);
+  --foreground: oklch(0.18 0.02 162);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 162);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 162);
+  --primary: oklch(0.42 0.11 162);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.955 0.008 85);
+  --secondary-foreground: oklch(0.25 0.02 162);
+  --muted: oklch(0.955 0.008 85);
+  --muted-foreground: oklch(0.50 0.02 162);
+  --accent: oklch(0.95 0.03 162);
+  --accent-foreground: oklch(0.25 0.02 162);
+  --destructive: oklch(0.50 0.17 25);
+  --border: oklch(0.91 0.01 155);
+  --input: oklch(0.91 0.01 155);
+  --ring: oklch(0.42 0.11 162);
+  --chart-1: oklch(0.42 0.11 162);
+  --chart-2: oklch(0.50 0.17 25);
+  --chart-3: oklch(0.72 0.12 85);
+  --chart-4: oklch(0.78 0.08 350);
+  --chart-5: oklch(0.35 0.08 200);
+  --sidebar: oklch(0.22 0.05 162);
+  --sidebar-foreground: oklch(0.95 0.01 90);
+  --sidebar-primary: oklch(0.50 0.12 162);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.28 0.06 162);
+  --sidebar-accent-foreground: oklch(0.95 0.01 90);
+  --sidebar-border: oklch(0.30 0.05 162);
+  --sidebar-ring: oklch(0.42 0.11 162);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans), sans-serif;
+  }
 }

@@ -22,31 +22,34 @@ function LoginContent() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
-      <div className="w-full max-w-sm rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
-        <h1 className="mb-2 text-center text-2xl font-bold text-gray-900">
-          Tasting Form
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
+      <div className="w-full max-w-sm rounded-lg border border-border bg-card p-8 shadow-sm">
+        <div className="mb-4 flex justify-center">
+          <img src="/isekado-logo.png" alt="ISEKADO" width={48} height={48} />
+        </div>
+        <h1 className="mb-2 text-center text-2xl font-bold text-foreground">
+          テイスティング
         </h1>
-        <p className="mb-8 text-center text-sm text-gray-500">
+        <p className="mb-8 text-center text-sm text-muted-foreground">
           ISEKADO 製品テイスティング
         </p>
 
         {error === "domain" && (
-          <div className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-700">
+          <div className="mb-4 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
             このアプリは @kadoyahonten.co.jp
             のアカウントでのみ利用できます。
           </div>
         )}
 
         {error === "auth" && (
-          <div className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-700">
+          <div className="mb-4 rounded-md bg-destructive/10 p-3 text-sm text-destructive">
             認証に失敗しました。もう一度お試しください。
           </div>
         )}
 
         <button
           onClick={handleGoogleLogin}
-          className="flex w-full items-center justify-center gap-3 rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
+          className="flex w-full items-center justify-center gap-3 rounded-md border border-input bg-card px-4 py-2.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-accent"
         >
           <svg viewBox="0 0 24 24" width="20" height="20">
             <path
@@ -69,7 +72,7 @@ function LoginContent() {
           Google でログイン
         </button>
 
-        <p className="mt-4 text-center text-xs text-gray-500">
+        <p className="mt-4 text-center text-xs text-muted-foreground">
           @kadoyahonten.co.jp のアカウントが必要です
         </p>
       </div>

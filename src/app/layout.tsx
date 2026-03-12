@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import { BottomNav } from "@/components/navigation";
+import { BottomNav, AppHeader } from "@/components/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +13,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
 export const metadata: Metadata = {
-  title: "Tasting Form",
+  title: "テイスティング | ISEKADO",
   description: "ISEKADO 製品テイスティングフォーム",
 };
 
@@ -32,9 +38,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSansJP.variable} antialiased`}
       >
-        <main className="mx-auto min-h-screen max-w-lg pb-16">
+        <AppHeader />
+        <main className="mx-auto min-h-screen max-w-lg pt-12 pb-16">
           {children}
         </main>
         <BottomNav />
